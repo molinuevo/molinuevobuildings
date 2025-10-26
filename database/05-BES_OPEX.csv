@@ -1,0 +1,12 @@
+Building Energy System OPEX;Fixed cost E/KW;Variable cost E/KWh;Emisions kgCO2/KWh
+Solids|Coal;1;0,08;0,254
+Liquids|Gas;1;0,08;0,254
+Liquids|Oil;1;0,1;0,311
+Gases|Gas;1;0,064;0,252
+Solids|Biomass;1;0,057;0,018
+Electricity;1;0,23;0,399
+Heat;1;0,06;0,5
+Liquids|Biomass;1;0,15;0,018
+Gases|Biomass;1;0,015;0,018
+Hydrogen;1;0,5;0
+Heat|Solar;1;0;0

@@ -1,0 +1,17 @@
+Building Energy System CAPEX E/KW;Space Heating;Space Cooling;Water Heating;Cooking;Lighting;Appliances
+Solids;80;80;80;80;80;80
+Liquified petroleum gas (LPG);80;80;80;80;80;80
+Diesel oil;80;80;80;80;80;80
+Gas heat pumps;150;150;150;150;150;150
+Natural gas;60;60;60;60;60;60
+Biomass;120;120;120;120;120;120
+Geothermal;1600;200;1600;200;200;200
+Distributed heat;1;1;1;1;1;1
+Advanced electric heating;800;800;800;800;800;800
+Conventional electric heating;100;100;100;100;100;100
+BioOil;100;100;100;100;100;100
+BioGas;100;100;100;100;100;100
+Hydrogen;100;100;100;100;100;100
+Electric space cooling;100;100;100;100;100;100
+Electricity;100;100;100;100;100;100
+Solar;100;100;100;100;100;100

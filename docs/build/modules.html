@@ -1,0 +1,1328 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="prev" title="API Reference" href="api_reference.html">
+
+    <!-- Generated with Sphinx 8.1.2 and Furo 2025.09.25 -->
+        <title>Modules - iDesignRES - Building Stock Energy Model</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #007acc;
+  --color-brand-content: #007acc;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">iDesignRES - Building Stock Energy Model</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">iDesignRES - Building Stock Energy Model</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="api_reference.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Modules</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/iDesignRES/Tecnalia_Building-Stock-Energy-Model/blob/main/docs/modules.rst?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/iDesignRES/Tecnalia_Building-Stock-Energy-Model/edit/main/docs/modules.rst" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h1>
+<section id="module-building_energy_process">
+<span id="main-module"></span><h2>Main Module<a class="headerlink" href="#module-building_energy_process" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="building_energy_process.executeBuildingEnergySimulationProcess">
+<span class="sig-prename descclassname"><span class="pre">building_energy_process.</span></span><span class="sig-name descname"><span class="pre">executeBuildingEnergySimulationProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">processPayload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startTime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endTime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buildingUse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/building_energy_process.html#executeBuildingEnergySimulationProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_energy_process.executeBuildingEnergySimulationProcess" title="Link to this definition">¶</a></dt>
+<dd><p>Function to execute the Building Energy Simulation process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>processPayload</strong> (<em>dict</em>) – <p>The dictionary with the process input payload:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span> <span class="n">see</span> <span class="s2">&quot;input.json&quot;</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">directory</span><span class="o">.</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>startTime</strong> (<em>str</em>) – The start datetime, e.g., “2019-03-01T13:00:00”.</p></li>
+<li><p><strong>endTime</strong> (<em>str</em>) – The end datetime, e.g., “2019-03-02T13:00:00”.</p></li>
+<li><p><strong>buildingUse</strong> (<em>str</em>) – The archetype (building use). For example: “Offices”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_energy_process.executeModel">
+<span class="sig-prename descclassname"><span class="pre">building_energy_process.</span></span><span class="sig-name descname"><span class="pre">executeModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modelPayload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/building_energy_process.html#executeModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_energy_process.executeModel" title="Link to this definition">¶</a></dt>
+<dd><p>Function to execute the Buildings Stock Energy Model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>modelPayload</strong> (<em>dict</em>) – <p>The dictionary with the Model input payload:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span> <span class="n">see</span> <span class="s2">&quot;input.json&quot;</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">directory</span><span class="o">.</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_energy_process.formatHourlyResults">
+<span class="sig-prename descclassname"><span class="pre">building_energy_process.</span></span><span class="sig-name descname"><span class="pre">formatHourlyResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictHourlyResults</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archetypes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/building_energy_process.html#formatHourlyResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_energy_process.formatHourlyResults" title="Link to this definition">¶</a></dt>
+<dd><p>Function to format the Hourly results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dictHourlyResults</strong> (<em>dict</em>) – <p>The dictionary resulting from the Hourly results calculation. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;{</span>
+    <span class="s2">&quot;Apartment Block&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;Single family- Terraced houses&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;Hotels and Restaurants&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;Health&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;Education&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;Offices&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;Trade&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;Other non-residential buildings&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;Sport&quot;</span><span class="p">:</span> <span class="n">DataFrame</span>
+<span class="p">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>archetypes</strong> (<em>list</em>) – <p>The list of building uses. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;[</span>
+    <span class="s2">&quot;Apartment Block&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Single family- Terraced houses&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Hotels and Restaurants&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Health,</span>
+    <span class="s2">&quot;Education&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Offices&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Trade&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Other non-residential buildings&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sport&quot;</span>
+<span class="p">]</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_energy_process.main">
+<span class="sig-prename descclassname"><span class="pre">building_energy_process.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/building_energy_process.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_energy_process.main" title="Link to this definition">¶</a></dt>
+<dd><p>Main function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sys.argv</strong><strong>[</strong><strong>0</strong><strong>]</strong> (<em>str</em>) – The current file name, e.g., “building_energy_process.py”.</p></li>
+<li><p><strong>sys.argv</strong><strong>[</strong><strong>1</strong><strong>]</strong> (<em>str</em>) – The process input data file path, e.g., “input.json”.</p></li>
+<li><p><strong>sys.argv</strong><strong>[</strong><strong>2</strong><strong>]</strong> (<em>str</em>) – The start datetime, e.g., “2019-03-01T13:00:00”.</p></li>
+<li><p><strong>sys.argv</strong><strong>[</strong><strong>3</strong><strong>]</strong> (<em>str</em>) – The end datetime, e.g., “2019-03-02T13:00:00”.</p></li>
+<li><p><strong>sys.argv</strong><strong>[</strong><strong>4</strong><strong>]</strong> (<em>str</em>) – The archetype (building use), e.g., “Offices”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-building_stock_energy_model.model">
+<span id="model-module"></span><h2>Model Module<a class="headerlink" href="#module-building_stock_energy_model.model" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s01LoadPreviousResult">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s01LoadPreviousResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nutsId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s01LoadPreviousResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s01LoadPreviousResult" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 01: Load the previous result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nutsId</strong> (<em>str</em>) – Identifier of NUTS2 region for which the
+analysis will be carried out.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s02RetrieveTemperatures">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s02RetrieveTemperatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nutsId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s02RetrieveTemperatures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s02RetrieveTemperatures" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 02: Retrieve temperatures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nutsId</strong> (<em>str</em>) – Identifier of NUTS2 region for which the
+analysis will be carried out.</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The selected year.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s03RetrieveRadiationValues">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s03RetrieveRadiationValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nutsId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s03RetrieveRadiationValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s03RetrieveRadiationValues" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 03: Retrieve radiation values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nutsId</strong> (<em>str</em>) – Identifier of NUTS2 region for which the
+analysis will be carried out.</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The selected year.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s04LoadDatabase">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s04LoadDatabase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nutsId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hddReduction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cddReduction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s04LoadDatabase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s04LoadDatabase" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 04: Load the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nutsId</strong> (<em>str</em>) – Identifier of NUTS2 region for which the
+analysis will be carried out.</p></li>
+<li><p><strong>hddReduction</strong> (<em>float</em>) – Reduction in heating degree days
+for future scenario.</p></li>
+<li><p><strong>cddReduction</strong> (<em>float</em>) – Reduction in cooling degree days
+for future scenarios.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s05RetrieveSolarData">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s05RetrieveSolarData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nutsId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">listInputJsonSolar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictDBBuildings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s05RetrieveSolarData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s05RetrieveSolarData" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 05: Retrieve radiation values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nutsId</strong> (<em>str</em>) – Identifier of NUTS2 region for which the
+analysis will be carried out.</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The selected year.</p></li>
+<li><p><strong>listInputJsonSolar</strong> (<em>list</em>) – <p>Data from the input.json file. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;building_use&#39;</span><span class="p">:</span> <span class="s1">&#39;Apartment Block&#39;</span><span class="p">,</span> <span class="s1">&#39;area_total&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;power&#39;</span><span class="p">:</span> <span class="mf">195.826</span><span class="p">,</span> <span class="s1">&#39;capex&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;building_use&#39;</span><span class="p">:</span> <span class="s1">&#39;Single family- Terraced houses&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;building_use&#39;</span><span class="p">:</span> <span class="s1">&#39;Offices&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;building_use&#39;</span><span class="p">:</span> <span class="s1">&#39;Education&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;building_use&#39;</span><span class="p">:</span> <span class="s1">&#39;Health&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;building_use&#39;</span><span class="p">:</span> <span class="s1">&#39;Trade&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;building_use&#39;</span><span class="p">:</span> <span class="s1">&#39;Hotels and Restaurants&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;building_use&#39;</span><span class="p">:</span> <span class="s1">&#39;Other non-residential buildings&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;building_use&#39;</span><span class="p">:</span> <span class="s1">&#39;Sport&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>dictDBBuildings</strong> (<em>dict</em>) – <p>Data from the database file. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;System&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;system_cost&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;opex_pv&#39;</span><span class="p">:</span> <span class="mi">15000</span><span class="p">,</span> <span class="s1">&#39;min_ghi_pv&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;land_use_pv&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
+    <span class="s1">&#39;Apartment Block&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;tilt&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;azimuth&#39;</span><span class="p">:</span> <span class="mi">180</span><span class="p">,</span> <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+        <span class="s1">&#39;tracking_porcentage&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;use_factor&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;distribution&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]},</span>
+    <span class="s1">&#39;Single family- Terraced houses&#39;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>
+    <span class="s1">&#39;Hotels and Restaurants&#39;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>
+    <span class="s1">&#39;Health&#39;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>
+    <span class="s1">&#39;Education&#39;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>
+    <span class="s1">&#39;Offices&#39;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>
+    <span class="s1">&#39;Sport&#39;</span><span class="p">:</span> <span class="p">{</span><span class="o">.</span><span class="p">},</span>
+    <span class="s1">&#39;Trade&#39;</span><span class="p">:</span> <span class="p">{</span><span class="o">.</span><span class="p">},</span>
+    <span class="s1">&#39;Other non-residential buildings&#39;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s06AddColumnsToMainDataFrame">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s06AddColumnsToMainDataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s06AddColumnsToMainDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s06AddColumnsToMainDataFrame" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 06: Add columns to the main dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s07AddInputDataToMainDataframe">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s07AddInputDataToMainDataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfDHW</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfYears</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfSectors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfDwellings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nutsId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">increaseResidentialBuiltArea</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">increaseServiceBuiltArea</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s07AddInputDataToMainDataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s07AddInputDataToMainDataframe" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 07: Add the input data to the main DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfDHW</strong> – (DataFrame): The DataFrame corresponding to DHW.</p></li>
+<li><p><strong>dfYears</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Years.</p></li>
+<li><p><strong>dfSectors</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Sectors.</p></li>
+<li><p><strong>dfDwellings</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Dwellings.</p></li>
+<li><p><strong>nutsId</strong> (<em>str</em>) – Identifier of NUTS2 region for which the analysis
+will be carried out.</p></li>
+<li><p><strong>increaseResidentialBuiltArea</strong> (<em>float</em>) – Reduction in heating degree
+days for future scenario.</p></li>
+<li><p><strong>increaseServiceBuiltArea</strong> (<em>float</em>) – Reduction in cooling degree days
+for future scenarios.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s08AddActiveMeasures">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s08AddActiveMeasures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfReshhtes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfSerhhtes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfRThheff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nutsId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activeMeasures</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activeMeasuresBaseline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archetypes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s08AddActiveMeasures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s08AddActiveMeasures" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 08: Add the active measures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfReshhtes</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Residential.</p></li>
+<li><p><strong>dfSerhhtes</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Service.</p></li>
+<li><p><strong>dfRThheff</strong> (<em>DataFrame</em>) – The DataFrame corresponding to RT.</p></li>
+<li><p><strong>nutsId</strong> – str -&gt; Identifier of NUTS2 region for which the
+analysis will be carried out.</p></li>
+<li><p><strong>activeMeasures</strong> (<em>list</em>) – <p>The list of active measures:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span> <span class="n">see</span> <span class="s2">&quot;input.json&quot;</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">directory</span><span class="o">.</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>activeMeasuresBaseline</strong> (<em>list</em>) – <p>The list of active measures corresponding to the baseline:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span> <span class="n">see</span> <span class="s2">&quot;input.json&quot;</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">directory</span><span class="o">.</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>archetypes</strong> (<em>list</em>) – <p>The list of building uses. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;[</span>
+    <span class="s2">&quot;Apartment Block&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Single family- Terraced houses&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Hotels and Restaurants&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Health&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Education&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Offices&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Trade&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Other non-residential buildings&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sport&quot;</span>
+<span class="p">]</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s09AddPassiveMeasures">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s09AddPassiveMeasures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passiveMeasures</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s09AddPassiveMeasures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s09AddPassiveMeasures" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 09: Add the passive measures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>passiveMeasures</strong> (<em>list</em>) – <p>The list of passive measures:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span> <span class="n">see</span> <span class="s2">&quot;input.json&quot;</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">directory</span><span class="o">.</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s10WriteUValuesAndInternalGains">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s10WriteUValuesAndInternalGains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfDHW</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfUValues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfRUValues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfACH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nutsId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s10WriteUValuesAndInternalGains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s10WriteUValuesAndInternalGains" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 10: Write the U-Values and the Internal Gains.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfDHW</strong> (<em>DataFrame</em>) – The DataFrame corresponding to DHW.</p></li>
+<li><p><strong>dfUValues</strong> (<em>DataFrame</em>) – The DataFrame corresponding to U-Values.</p></li>
+<li><p><strong>dfRUValues</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Retroffitting U-Values.</p></li>
+<li><p><strong>dfACH</strong> (<em>DataFrame</em>) – The DataFrame corresponding to ACH.</p></li>
+<li><p><strong>nutsId</strong> (<em>str</em>) – Identifier of NUTS2 region for which the
+analysis will be carried out.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s11AddCapexDataFrame">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s11AddCapexDataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfBesCapex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s11AddCapexDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s11AddCapexDataFrame" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 11: Add the CAPEX dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfBesCapex</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Capex.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s12AddOpexDataFrame">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s12AddOpexDataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfBesOpex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s12AddOpexDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s12AddOpexDataFrame" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 12: Add the OPEX dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfBesOpex</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Opex.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s13AddRetrofittingCostDataFrame">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s13AddRetrofittingCostDataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfRetroCost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s13AddRetrofittingCostDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s13AddRetrofittingCostDataFrame" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 13: Add the Retrofitting Cost dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfRetroCost</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Retrofitting Cost.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s14AddRenewableEnergySystemsDataFrame">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s14AddRenewableEnergySystemsDataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfRes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s14AddRenewableEnergySystemsDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s14AddRenewableEnergySystemsDataFrame" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 14: Add the Renewable Energy Systems dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfRes</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Renewable Energy Systems.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s15AddCapacityDataFrame">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s15AddCapacityDataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfCapacity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archetypes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s15AddCapacityDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s15AddCapacityDataFrame" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 15: Add the Capacity dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfCapacity</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Capacity.</p></li>
+<li><p><strong>archetypes</strong> (<em>list</em>) – <p>The list of building uses. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;[</span>
+    <span class="s2">&quot;Apartment Block&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Single family- Terraced houses&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Hotels and Restaurants&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Health&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Education&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Offices&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Trade&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Other non-residential buildings&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sport&quot;</span>
+<span class="p">]</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s16AddEquivalentPowerDataFrame">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s16AddEquivalentPowerDataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s16AddEquivalentPowerDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s16AddEquivalentPowerDataFrame" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 16: Add the Equivalent Power dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s17CalculateCosts">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s17CalculateCosts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s17CalculateCosts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s17CalculateCosts" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 17: Calculate the costs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s18CalculateGeneralSchedule">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s18CalculateGeneralSchedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfSched</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfTemperatures</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfBaseTemperatures</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfSolarOffice</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfSolarNOffice</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nutsId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s18CalculateGeneralSchedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s18CalculateGeneralSchedule" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 18: Calculate the General Schedule for each archetype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfSched</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Schedule.</p></li>
+<li><p><strong>dfTemperatures</strong> (<em>DataFrame</em>) – The DataFrame corresponding
+to Temperatures.</p></li>
+<li><p><strong>dfBaseTemperatures</strong> (<em>DataFrame</em>) – The DataFrame corresponding
+to Base Temperatures.</p></li>
+<li><p><strong>dfSolarOffice</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Solar Office data.</p></li>
+<li><p><strong>dfSolarNOffice</strong> (<em>DataFrame</em>) – The DataFrame corresponding to Solar Non-Office data.</p></li>
+<li><p><strong>nutsId</strong> (<em>str</em>) – Identifier of NUTS2 region for which the
+analysis will be carried out.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s19CalculateScenario">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s19CalculateScenario</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictSchedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s19CalculateScenario"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s19CalculateScenario" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 19: Calculate the Scenario.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dictSchedule</strong> (<em>dict</em>) – <p>The dictionary corresponding to the Schedule. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Apartment Block&quot;</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Single family- Terraced houses&quot;</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Offices&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Education&quot;</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Health&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Trade&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Hotels and Restaurants&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Other non-residential buildings&quot;</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Sport&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s20CalculateAnualResults">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s20CalculateAnualResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictSchedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s20CalculateAnualResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s20CalculateAnualResults" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 20: Calculate the Anual Results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dictSchedule</strong> (<em>dict</em>) – <p>The dictionary corresponding to the Schedule. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Apartment Block&quot;</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Single family- Terraced houses&quot;</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Offices&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Education&quot;</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Health&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Trade&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Hotels and Restaurants&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Other non-residential buildings&quot;</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Sport&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s21CalculateConsolidate">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s21CalculateConsolidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictSchedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archetype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s21CalculateConsolidate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s21CalculateConsolidate" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 21: Calculate the Consolidate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dictSchedule</strong> (<em>dict</em>) – <p>The dictionary corresponding to the Schedule. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Apartment Block&quot;</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Single family- Terraced houses&quot;</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Offices&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Education&quot;</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Health&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Trade&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Hotels and Restaurants&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Other non-residential buildings&quot;</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Sport&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>archetype</strong> (<em>str</em>) – The name of the archetype (building use).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.s22CalculateHourlyResults">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">s22CalculateHourlyResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfCSV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfSolar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictSchedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archetype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#s22CalculateHourlyResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.s22CalculateHourlyResults" title="Link to this definition">¶</a></dt>
+<dd><p>Model Step 22: Calculate the Hourly Results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dfCSV</strong> (<em>DataFrame</em>) – The built input data DataFrame.</p></li>
+<li><p><strong>dfSolar</strong> (<em>DataFrame</em>) – The solar data DataFrame.</p></li>
+<li><p><strong>dictSchedule</strong> (<em>dict</em>) – <p>The dictionary corresponding to the Schedule. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Apartment Block&quot;</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Single family- Terraced houses&quot;</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Offices&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Education&quot;</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Health&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Trade&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Hotels and Restaurants&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Other non-residential buildings&quot;</span> <span class="s2">&quot;schedule&quot;</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;Sport&quot;</span><span class="p">,</span> <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="n">DataFrame</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>archetype</strong> (<em>str</em>) – The name of the archetype (building use).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x01AddFeb29IfMissingForTemperaturesData">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x01AddFeb29IfMissingForTemperaturesData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetYear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x01AddFeb29IfMissingForTemperaturesData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x01AddFeb29IfMissingForTemperaturesData" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Auxiliary function 01: If the destination year is a leap year</dt><dd><p>and the original year was not, replace 28-Feb with 29-Feb.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>DataFrame</em>) – The source DataFrame.</p></li>
+<li><p><strong>targetYear</strong> (<em>int</em>) – The target year.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x02AddFeb29IfMissingForRadiationData">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x02AddFeb29IfMissingForRadiationData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetYear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x02AddFeb29IfMissingForRadiationData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x02AddFeb29IfMissingForRadiationData" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Auxiliary function 02: If the destination year is a leap year</dt><dd><p>and the original year was not, replace 28-Feb with 29-Feb.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>DataFrame</em>) – The source DataFrame.</p></li>
+<li><p><strong>targetYear</strong> (<em>int</em>) – The target year.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x03DropFeb29IfPresentForTemperaturesData">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x03DropFeb29IfPresentForTemperaturesData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x03DropFeb29IfPresentForTemperaturesData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x03DropFeb29IfPresentForTemperaturesData" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary function 03: Delete the rows for February 29 (if they exist).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>DataFrame</em>) – The source DataFrame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x04DropFeb29IfPresentForRadiationData">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x04DropFeb29IfPresentForRadiationData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x04DropFeb29IfPresentForRadiationData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x04DropFeb29IfPresentForRadiationData" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary function 04: Delete the rows for February 29 (if they exist).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>DataFrame</em>) – The source DataFrame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x05RemapYear">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x05RemapYear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tsIndex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DatetimeIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetYear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DatetimeIndex</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x05RemapYear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x05RemapYear" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Auxiliary function 05: Change the year of a DatetimeIndex while keeping</dt><dd><p>the month/day/hour/minute/second values.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tsIndex</strong> (<em>DatetimeIndex</em>) – The source DatetimeIndex.</p></li>
+<li><p><strong>targetYear</strong> (<em>int</em>) – The target year.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DatetimeIndex</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x06EstablishValue">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x06EstablishValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limitDown</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limitUp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultValue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x06EstablishValue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x06EstablishValue" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary function 06: Establish value between limits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dict</strong> (<em>dict</em>) – The source dictionary.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The source property.</p></li>
+<li><p><strong>limitDown</strong> (<em>float</em>) – The lower limit of the value.</p></li>
+<li><p><strong>limitUp</strong> (<em>float</em>) – The upper limit of the value.</p></li>
+<li><p><strong>defaultValue</strong> (<em>float</em>) – The default value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x07GetAvailableArea">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x07GetAvailableArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">landUse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x07GetAvailableArea"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x07GetAvailableArea" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary function 07: Obtain the available area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameters</strong> (<em>list</em>) – The list of parameters.</p></li>
+<li><p><strong>cost</strong> (<em>float</em>) – The value of the cost.</p></li>
+<li><p><strong>landUse</strong> (<em>float</em>) – The value of the land use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x08GetRegions">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x08GetRegions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictScada</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minGhi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x08GetRegions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x08GetRegions" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary function 08: Obtain the regions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dictScada</strong> (<em>DataFrame</em>) – The scada dataframe.</p></li>
+<li><p><strong>area</strong> (<em>float</em>) – The value of the area.</p></li>
+<li><p><strong>minGhi</strong> (<em>float</em>) – The value of the min GHI.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x09GetPVProduction">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x09GetPVProduction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">landUse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distribAzimuth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porcent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x09GetPVProduction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x09GetPVProduction" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary function 09: Obtain the PV production.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> (<em>list</em>) – The list of rows.</p></li>
+<li><p><strong>landUse</strong> (<em>float</em>) – The value of the land use.</p></li>
+<li><p><strong>tilt</strong> (<em>float</em>) – The value of the tilt.</p></li>
+<li><p><strong>distribAzimuth</strong> (<em>float</em>) – The value of the distribAzimuth.</p></li>
+<li><p><strong>tracking</strong> (<em>float</em>) – The value of the tracking.</p></li>
+<li><p><strong>loss</strong> (<em>float</em>) – The value of the loss.</p></li>
+<li><p><strong>porcent</strong> (<em>float</em>) – The value of the porcent.</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The year.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x10GetDistribution">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x10GetDistribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x10GetDistribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x10GetDistribution" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary function 10: Obtain the distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> (<em>list</em>) – The list of rows.</p></li>
+<li><p><strong>label</strong> (<em>str</em>) – The label.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x11GetCoordinates">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x11GetCoordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sourceDF</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x11GetCoordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x11GetCoordinates" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary function 11: Obtain the coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sourceDF</strong> (<em>DataFrame</em>) – The source DataFrame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.model.x12CalculateOPEX">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.model.</span></span><span class="sig-name descname"><span class="pre">x12CalculateOPEX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opexPV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/model.html#x12CalculateOPEX"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.model.x12CalculateOPEX" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary function 12: Calculate the OPEX.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pot</strong> (<em>dict</em>) – The pot dictionary.</p></li>
+<li><p><strong>opexPV</strong> (<em>float</em>) – The OPEX for PV.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-building_stock_energy_model.validator">
+<span id="validator-module"></span><h2>Validator Module<a class="headerlink" href="#module-building_stock_energy_model.validator" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.validator.validateCommandLineParameters">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.validator.</span></span><span class="sig-name descname"><span class="pre">validateCommandLineParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/building_stock_energy_model/validator.html#validateCommandLineParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.validator.validateCommandLineParameters" title="Link to this definition">¶</a></dt>
+<dd><p>Funtion to validate the command line parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> (<em>list</em>) – <p>The list of command line parameters. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s2">&quot;building_energy_process.py&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;input.json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2019-03-01T13:00:00&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2019-03-02T13:00:00&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Offices&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.validator.validateDatabaseIntegrity">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.validator.</span></span><span class="sig-name descname"><span class="pre">validateDatabaseIntegrity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/building_stock_energy_model/validator.html#validateDatabaseIntegrity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.validator.validateDatabaseIntegrity" title="Link to this definition">¶</a></dt>
+<dd><p>Funtion to validate the integrity of the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.validator.validateLimits">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.validator.</span></span><span class="sig-name descname"><span class="pre">validateLimits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limitDown</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limitUp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/validator.html#validateLimits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.validator.validateLimits" title="Link to this definition">¶</a></dt>
+<dd><p>Function to check the limits of a given value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>float</em>) – The value of the property to be evaluated.</p></li>
+<li><p><strong>limitDown</strong> (<em>float</em>) – The lower limit.</p></li>
+<li><p><strong>limitUp</strong> (<em>float</em>) – The highest limit.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.validator.validateProcessOutput">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.validator.</span></span><span class="sig-name descname"><span class="pre">validateProcessOutput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/validator.html#validateProcessOutput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.validator.validateProcessOutput" title="Link to this definition">¶</a></dt>
+<dd><p>Funtion to validate the process output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>result</strong> (<em>dict</em>) – <p>The process result. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="s2">&quot;Apartment Block&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+     <span class="s2">&quot;Single family- Terraced houses&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+     <span class="s2">&quot;Offices&quot;</span><span class="p">,:</span> <span class="n">DataFrame</span><span class="p">,</span>
+     <span class="s2">&quot;Education&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+     <span class="s2">&quot;Health&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+     <span class="s2">&quot;Trade&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+     <span class="s2">&quot;Hotels and Restaurants&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+     <span class="s2">&quot;Other non-residential buildings&quot;</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+     <span class="s2">&quot;Sport&quot;</span><span class="p">:</span> <span class="n">DataFrame</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="building_stock_energy_model.validator.validateProcessPayload">
+<span class="sig-prename descclassname"><span class="pre">building_stock_energy_model.validator.</span></span><span class="sig-name descname"><span class="pre">validateProcessPayload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/building_stock_energy_model/validator.html#validateProcessPayload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#building_stock_energy_model.validator.validateProcessPayload" title="Link to this definition">¶</a></dt>
+<dd><p>Funtion to validate the process payload.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>payload</strong> (<em>dict</em>) – <p>The process payload:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span> <span class="n">see</span> <span class="s2">&quot;input.json&quot;</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">directory</span><span class="o">.</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="api_reference.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">API Reference</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Tecnalia
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Modules</a><ul>
+<li><a class="reference internal" href="#module-building_energy_process">Main Module</a><ul>
+<li><a class="reference internal" href="#building_energy_process.executeBuildingEnergySimulationProcess"><code class="docutils literal notranslate"><span class="pre">executeBuildingEnergySimulationProcess()</span></code></a></li>
+<li><a class="reference internal" href="#building_energy_process.executeModel"><code class="docutils literal notranslate"><span class="pre">executeModel()</span></code></a></li>
+<li><a class="reference internal" href="#building_energy_process.formatHourlyResults"><code class="docutils literal notranslate"><span class="pre">formatHourlyResults()</span></code></a></li>
+<li><a class="reference internal" href="#building_energy_process.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-building_stock_energy_model.model">Model Module</a><ul>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s01LoadPreviousResult"><code class="docutils literal notranslate"><span class="pre">s01LoadPreviousResult()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s02RetrieveTemperatures"><code class="docutils literal notranslate"><span class="pre">s02RetrieveTemperatures()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s03RetrieveRadiationValues"><code class="docutils literal notranslate"><span class="pre">s03RetrieveRadiationValues()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s04LoadDatabase"><code class="docutils literal notranslate"><span class="pre">s04LoadDatabase()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s05RetrieveSolarData"><code class="docutils literal notranslate"><span class="pre">s05RetrieveSolarData()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s06AddColumnsToMainDataFrame"><code class="docutils literal notranslate"><span class="pre">s06AddColumnsToMainDataFrame()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s07AddInputDataToMainDataframe"><code class="docutils literal notranslate"><span class="pre">s07AddInputDataToMainDataframe()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s08AddActiveMeasures"><code class="docutils literal notranslate"><span class="pre">s08AddActiveMeasures()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s09AddPassiveMeasures"><code class="docutils literal notranslate"><span class="pre">s09AddPassiveMeasures()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s10WriteUValuesAndInternalGains"><code class="docutils literal notranslate"><span class="pre">s10WriteUValuesAndInternalGains()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s11AddCapexDataFrame"><code class="docutils literal notranslate"><span class="pre">s11AddCapexDataFrame()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s12AddOpexDataFrame"><code class="docutils literal notranslate"><span class="pre">s12AddOpexDataFrame()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s13AddRetrofittingCostDataFrame"><code class="docutils literal notranslate"><span class="pre">s13AddRetrofittingCostDataFrame()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s14AddRenewableEnergySystemsDataFrame"><code class="docutils literal notranslate"><span class="pre">s14AddRenewableEnergySystemsDataFrame()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s15AddCapacityDataFrame"><code class="docutils literal notranslate"><span class="pre">s15AddCapacityDataFrame()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s16AddEquivalentPowerDataFrame"><code class="docutils literal notranslate"><span class="pre">s16AddEquivalentPowerDataFrame()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s17CalculateCosts"><code class="docutils literal notranslate"><span class="pre">s17CalculateCosts()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s18CalculateGeneralSchedule"><code class="docutils literal notranslate"><span class="pre">s18CalculateGeneralSchedule()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s19CalculateScenario"><code class="docutils literal notranslate"><span class="pre">s19CalculateScenario()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s20CalculateAnualResults"><code class="docutils literal notranslate"><span class="pre">s20CalculateAnualResults()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s21CalculateConsolidate"><code class="docutils literal notranslate"><span class="pre">s21CalculateConsolidate()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.s22CalculateHourlyResults"><code class="docutils literal notranslate"><span class="pre">s22CalculateHourlyResults()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x01AddFeb29IfMissingForTemperaturesData"><code class="docutils literal notranslate"><span class="pre">x01AddFeb29IfMissingForTemperaturesData()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x02AddFeb29IfMissingForRadiationData"><code class="docutils literal notranslate"><span class="pre">x02AddFeb29IfMissingForRadiationData()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x03DropFeb29IfPresentForTemperaturesData"><code class="docutils literal notranslate"><span class="pre">x03DropFeb29IfPresentForTemperaturesData()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x04DropFeb29IfPresentForRadiationData"><code class="docutils literal notranslate"><span class="pre">x04DropFeb29IfPresentForRadiationData()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x05RemapYear"><code class="docutils literal notranslate"><span class="pre">x05RemapYear()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x06EstablishValue"><code class="docutils literal notranslate"><span class="pre">x06EstablishValue()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x07GetAvailableArea"><code class="docutils literal notranslate"><span class="pre">x07GetAvailableArea()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x08GetRegions"><code class="docutils literal notranslate"><span class="pre">x08GetRegions()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x09GetPVProduction"><code class="docutils literal notranslate"><span class="pre">x09GetPVProduction()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x10GetDistribution"><code class="docutils literal notranslate"><span class="pre">x10GetDistribution()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x11GetCoordinates"><code class="docutils literal notranslate"><span class="pre">x11GetCoordinates()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.model.x12CalculateOPEX"><code class="docutils literal notranslate"><span class="pre">x12CalculateOPEX()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-building_stock_energy_model.validator">Validator Module</a><ul>
+<li><a class="reference internal" href="#building_stock_energy_model.validator.validateCommandLineParameters"><code class="docutils literal notranslate"><span class="pre">validateCommandLineParameters()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.validator.validateDatabaseIntegrity"><code class="docutils literal notranslate"><span class="pre">validateDatabaseIntegrity()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.validator.validateLimits"><code class="docutils literal notranslate"><span class="pre">validateLimits()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.validator.validateProcessOutput"><code class="docutils literal notranslate"><span class="pre">validateProcessOutput()</span></code></a></li>
+<li><a class="reference internal" href="#building_stock_energy_model.validator.validateProcessPayload"><code class="docutils literal notranslate"><span class="pre">validateProcessPayload()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=82662543"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

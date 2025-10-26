@@ -1,0 +1,92 @@
+{
+	"System": {
+        "system_cost": 0.5,
+        "opex_pv": 15000,
+        "min_ghi_pv": 1000,
+        "land_use_pv": 100
+    },
+	"Apartment Block": {
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "efficiency": 18,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": [0.6,0.2,0.2]
+    },
+    "Single family- Terraced houses": {
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": [0.6,0.2,0.2]
+    },
+	"Hotels and Restaurants": {
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": [0.6,0.2,0.2]
+    },
+	"Health": {
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": [0.6,0.2,0.2]
+    },
+    "Education": {
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": [0.6,0.2,0.2]
+    },
+    "Offices": {
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": [0.6,0.2,0.2]
+    },
+    "Sport": {
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": [0.6,0.2,0.2]
+    },
+    "Trade": {
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": [0.6,0.2,0.2]
+    },
+    "Other non-residential buildings": {
+        "area_total": null,
+        "power": 74.930,
+        "capex": null,
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": [0.6,0.2,0.2]
+    },
+    "Industrial": {
+        "tilt": 30,
+        "azimuth": 180,
+        "loss": 14,
+        "tracking_porcentage": 0,
+        "use_factor": 100,
+        "distribution": null
+    }
+}
