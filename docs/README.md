@@ -1,6 +1,6 @@
 # iDesignRES: Building Stock Energy Model
 
-## 
+[![Docs](https://img.shields.io/badge/docs-stable-brightgreen)](https://molinuevo.github.io/molinuevobuildings)
 
 ## Documentation
 
