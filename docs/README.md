@@ -1,5 +1,7 @@
 # iDesignRES: Building Stock Energy Model
 
+## 
+
 ## Documentation
 
 The content of this directory includes, on the one hand, the documentation relating to the Python code of the model generated using the Sphinx Framework. Once the repository has been downloaded, it can be viewed as a web page, using the *index.html* file as the entry point.
