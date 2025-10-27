@@ -2,11 +2,13 @@
 <html class="no-js" lang="en" data-content_root="./">
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#"><link rel="search" title="Search" href="search.html">
-        <link rel="canonical" href="https://molinuevo.github.io/molinuevobuildings/genindex.html">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="prev" title="Modules" href="modules.html">
+        <link rel="canonical" href="https://molinuevo.github.io/molinuevobuildings/example.html">
 
-    <!-- Generated with Sphinx 8.1.2 and Furo 2025.09.25 --><title>Index - iDesignRES - Building Stock Energy Model</title>
-<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <!-- Generated with Sphinx 8.1.2 and Furo 2025.09.25 -->
+        <title>Example - iDesignRES - Building Stock Energy Model</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -174,7 +176,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -193,14 +195,14 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api_reference.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Example</a></li>
 </ul>
 
 </div>
@@ -220,7 +222,17 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/iDesignRES/Tecnalia_Building-Stock-Energy-Model/blob/main/docs/example.rst?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/iDesignRES/Tecnalia_Building-Stock-Energy-Model/edit/main/docs/example.rst" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
@@ -228,200 +240,34 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          
-<section class="genindex-section">
-  <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#B"><strong>B</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#X"><strong>X</strong></a></div>
+          <section id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h1>
+<section id="use-case-full-example-basque-country-nuts2-es21">
+<h2>Use Case full example: Basque Country (NUTS2 ES21)<a class="headerlink" href="#use-case-full-example-basque-country-nuts2-es21" title="Link to this heading">¶</a></h2>
+<p>First, a <strong>geoprocessing workflow</strong> is executed to obtain the required geometric and building stock data for the BSEM module. This process is fully automated and generates the input CSV file containing all relevant information described above.</p>
+<p>Once the data is generated, the results of the geoprocessing are validated against real-world data:</p>
+<ul class="simple">
+<li><p>On the one hand, <strong>total residential floor areas and the number of dwellings</strong> are compared with official statistical data.</p></li>
+<li><p>On the other hand, results for the <strong>city of Bilbao</strong> are compared against cadastral data.</p></li>
+</ul>
+<p>Both comparisons show only minimal deviations. It is not possible to perform a more detailed validation, since building stock data at the required level of disaggregation is not available at the regional scale.</p>
+<p>In addition to the geometric information, the model requires a set of input parameters related to energy systems and fuels. These parameters are defined in the input.json file.
+For each building use or sector, the following are defined:</p>
+<ul class="simple">
+<li><p>The fuel mix (share of fuels used for each final energy use).</p></li>
+<li><p>The percentage of buildings equipped with each system.</p></li>
+</ul>
+<p>For the Basque Country case study, these values were derived mainly from regional statistical sources. Where specific data was not available, the tool relies on an <strong>internal database of default values</strong> defined at the national.</p>
+<p>With these inputs, <strong>the baseline year scenario</strong> can be simulated for the case study.</p>
+<p>To model the <strong>2050 scenario</strong>, the same process is followed but with additional parameters describing the target year. These parameters are informed by existing regional strategies, such as the <strong>2030 Energy Transition and Climate Change Strategy for the Basque Country</strong>, as well as the <strong>2050 Roadmap and decarbonisation scenarios</strong>. From these narratives, the required input values are extracted.</p>
+<p>As in the baseline, fuel mixes and system shares are defined for each building use or sector.</p>
 </section>
-<section id="B" class="genindex-section">
-  <h2>B</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    building_energy_process
-
-        <ul>
-          <li><a href="modules.html#module-building_energy_process">module</a>
-</li>
-        </ul></li>
-        <li>
-    building_stock_energy_model.model
-
-        <ul>
-          <li><a href="modules.html#module-building_stock_energy_model.model">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    building_stock_energy_model.validator
-
-        <ul>
-          <li><a href="modules.html#module-building_stock_energy_model.validator">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
 </section>
-
-<section id="E" class="genindex-section">
-  <h2>E</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_energy_process.executeBuildingEnergySimulationProcess">executeBuildingEnergySimulationProcess() (in module building_energy_process)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_energy_process.executeModel">executeModel() (in module building_energy_process)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="F" class="genindex-section">
-  <h2>F</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_energy_process.formatHourlyResults">formatHourlyResults() (in module building_energy_process)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="M" class="genindex-section">
-  <h2>M</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_energy_process.main">main() (in module building_energy_process)</a>
-</li>
-        <li>
-    module
-
-        <ul>
-          <li><a href="modules.html#module-building_energy_process">building_energy_process</a>
-</li>
-          <li><a href="modules.html#module-building_stock_energy_model.model">building_stock_energy_model.model</a>
-</li>
-          <li><a href="modules.html#module-building_stock_energy_model.validator">building_stock_energy_model.validator</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="S" class="genindex-section">
-  <h2>S</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_stock_energy_model.model.s01LoadPreviousResult">s01LoadPreviousResult() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s02RetrieveTemperatures">s02RetrieveTemperatures() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s03RetrieveRadiationValues">s03RetrieveRadiationValues() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s04LoadDatabase">s04LoadDatabase() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s05RetrieveSolarData">s05RetrieveSolarData() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s06AddColumnsToMainDataFrame">s06AddColumnsToMainDataFrame() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s07AddInputDataToMainDataframe">s07AddInputDataToMainDataframe() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s08AddActiveMeasures">s08AddActiveMeasures() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s09AddPassiveMeasures">s09AddPassiveMeasures() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s10WriteUValuesAndInternalGains">s10WriteUValuesAndInternalGains() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s11AddCapexDataFrame">s11AddCapexDataFrame() (in module building_stock_energy_model.model)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_stock_energy_model.model.s12AddOpexDataFrame">s12AddOpexDataFrame() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s13AddRetrofittingCostDataFrame">s13AddRetrofittingCostDataFrame() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s14AddRenewableEnergySystemsDataFrame">s14AddRenewableEnergySystemsDataFrame() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s15AddCapacityDataFrame">s15AddCapacityDataFrame() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s16AddEquivalentPowerDataFrame">s16AddEquivalentPowerDataFrame() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s17CalculateCosts">s17CalculateCosts() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s18CalculateGeneralSchedule">s18CalculateGeneralSchedule() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s19CalculateScenario">s19CalculateScenario() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s20CalculateAnualResults">s20CalculateAnualResults() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s21CalculateConsolidate">s21CalculateConsolidate() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.s22CalculateHourlyResults">s22CalculateHourlyResults() (in module building_stock_energy_model.model)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="V" class="genindex-section">
-  <h2>V</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_stock_energy_model.validator.validateCommandLineParameters">validateCommandLineParameters() (in module building_stock_energy_model.validator)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.validator.validateDatabaseIntegrity">validateDatabaseIntegrity() (in module building_stock_energy_model.validator)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_stock_energy_model.validator.validateLimits">validateLimits() (in module building_stock_energy_model.validator)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.validator.validateProcessOutput">validateProcessOutput() (in module building_stock_energy_model.validator)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.validator.validateProcessPayload">validateProcessPayload() (in module building_stock_energy_model.validator)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="X" class="genindex-section">
-  <h2>X</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_stock_energy_model.model.x01AddFeb29IfMissingForTemperaturesData">x01AddFeb29IfMissingForTemperaturesData() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x02AddFeb29IfMissingForRadiationData">x02AddFeb29IfMissingForRadiationData() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x03DropFeb29IfPresentForTemperaturesData">x03DropFeb29IfPresentForTemperaturesData() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x04DropFeb29IfPresentForRadiationData">x04DropFeb29IfPresentForRadiationData() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x05RemapYear">x05RemapYear() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x06EstablishValue">x06EstablishValue() (in module building_stock_energy_model.model)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules.html#building_stock_energy_model.model.x07GetAvailableArea">x07GetAvailableArea() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x08GetRegions">x08GetRegions() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x09GetPVProduction">x09GetPVProduction() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x10GetDistribution">x10GetDistribution() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x11GetCoordinates">x11GetCoordinates() (in module building_stock_energy_model.model)</a>
-</li>
-        <li><a href="modules.html#building_stock_energy_model.model.x12CalculateOPEX">x12CalculateOPEX() (in module building_stock_energy_model.model)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
 
         </article>
       </div>
@@ -429,7 +275,17 @@
         
         <div class="related-pages">
           
-          
+          <a class="prev-page" href="modules.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Modules</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -448,8 +304,27 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Example</a><ul>
+<li><a class="reference internal" href="#use-case-full-example-basque-country-nuts2-es21">Use Case full example: Basque Country (NUTS2 ES21)</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

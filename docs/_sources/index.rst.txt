@@ -15,7 +15,10 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
    
+   overview
+   getting_started
    api_reference
+   example
    
 Indices and tables
 ==================

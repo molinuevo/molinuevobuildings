@@ -1,0 +1,45 @@
+Getting started
+===============
+
+System requirements
+-------------------
+
+The recommended system requirements are as follows:
+
+- Broadband Internet connection.
+- RAM memory: it is recommended to have 32GB.
+- Operating system: the models run on any operating system that supports Python and Poetry.
+- Python: version 3.10.
+- Poetry: version 2.1.1.
+
+To make sure Python 3.10 is installed.:
+
+	python --version
+
+And to make make sure that Poetry 2.1.1 is installed:
+
+	poetry --version
+
+Installation
+------------
+
+Clone the repository in the desired directory:
+
+	cd directory
+
+	git clone https://github.com/iDesignRES/Tecnalia_Building-Stock-Energy-Model
+
+To install the Building Stock Energy Model, enter the following command:
+
+	poetry install
+
+Execution
+---------
+
+Once installed, execute the Building Stock Energy Model entering the command:
+
+	poetry run python building_energy_process.py <input_payload> <start_time> <end_time> <building_use>
+
+For example:
+
+	poetry run python building_energy_process.py input.json 2019-01-01T00:00:00 2019-01-07T23:00:00 "Offices"

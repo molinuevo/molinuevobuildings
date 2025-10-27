@@ -1,0 +1,29 @@
+Example
+=======
+
+Use Case full example: Basque Country (NUTS2 ES21)
+--------------------------------------------------
+
+First, a **geoprocessing workflow** is executed to obtain the required geometric and building stock data for the BSEM module. This process is fully automated and generates the input CSV file containing all relevant information described above.
+
+Once the data is generated, the results of the geoprocessing are validated against real-world data:
+
+- On the one hand, **total residential floor areas and the number of dwellings** are compared with official statistical data.
+- On the other hand, results for the **city of Bilbao** are compared against cadastral data.
+
+Both comparisons show only minimal deviations. It is not possible to perform a more detailed validation, since building stock data at the required level of disaggregation is not available at the regional scale.
+
+In addition to the geometric information, the model requires a set of input parameters related to energy systems and fuels. These parameters are defined in the input.json file.
+For each building use or sector, the following are defined:
+
+- The fuel mix (share of fuels used for each final energy use).
+- The percentage of buildings equipped with each system.
+
+
+For the Basque Country case study, these values were derived mainly from regional statistical sources. Where specific data was not available, the tool relies on an **internal database of default values** defined at the national.
+
+With these inputs, **the baseline year scenario** can be simulated for the case study.
+
+To model the **2050 scenario**, the same process is followed but with additional parameters describing the target year. These parameters are informed by existing regional strategies, such as the **2030 Energy Transition and Climate Change Strategy for the Basque Country**, as well as the **2050 Roadmap and decarbonisation scenarios**. From these narratives, the required input values are extracted.
+
+As in the baseline, fuel mixes and system shares are defined for each building use or sector.
