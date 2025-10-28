@@ -14,11 +14,11 @@ The recommended system requirements are as follows:
 
 To make sure Python 3.10 is installed.:
 
-	python --version
+	python \-\-version
 
 And to make make sure that Poetry 2.1.1 is installed:
 
-	poetry --version
+	poetry \-\-version
 
 Installation
 ------------
